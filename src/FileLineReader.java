@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -13,21 +12,14 @@ public class FileLineReader {
         // TODO: Print each line in the format "lineNumber: lineContent"
         // TODO: Catch and handle any IOExceptions that might occur
 
-        try {
-          FileReader fr = new FileReader("../"+fileName);
-          BufferedReader br = new BufferedReader(fr);
-        try {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
           String line;
           int lineNumber = 1;
           while((line = br.readLine()) != null){
             System.out.println(lineNumber+": "+line);
             lineNumber++;
           }
-        }
-        catch (IOException e){
-
-        }
-        } catch (FileNotFoundException e){
+        } catch (IOException e){
           System.out.print("File not found!");
         }
 
