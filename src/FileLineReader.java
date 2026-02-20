@@ -11,7 +11,17 @@ public class FileLineReader {
         // TODO: Keep track of the line number (starting from 1)
         // TODO: Print each line in the format "lineNumber: lineContent"
         // TODO: Catch and handle any IOExceptions that might occur
-        
-        
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
+          String line;
+          int lineNumber = 1;
+          while((line = br.readLine()) != null){
+            System.out.println(lineNumber+": "+line);
+            lineNumber++;
+          }
+        } catch (IOException e){
+          System.out.print("File not found!");
+        }
+
     }
 }
